@@ -20,7 +20,7 @@ var getData = function(kitID, exportFunction){
       return;
     }
     var result = [];
-    var regex = new RegExp("." + prefix[1] + "-([a-zA-Z\-]+):before{content:'\\\\([a-zA-Z0-9]+)'}", "gi");
+    var regex = new RegExp("." + prefix[1] + "-([a-zA-Z0-9-_]+):before{content:'\\\\([a-zA-Z0-9]+)'}", "gi");
     var test = regex.exec(data);
     result.push(test);
     while (test != null) {
@@ -37,17 +37,21 @@ var getData = function(kitID, exportFunction){
 }
 
 var exportJSON = function(result){
-  var json = {};
+  var json = '{';
   for(var i = 0, l = result.length; i < l; i++){
-    json[result[i][1]] = '\\u' + result[i][2];
+    json += '\n"' + result[i][1] + '":"\\u' + result[i][2] + '",'
   }
-  $('#ios-output').val(JSON.stringify(json));
+  json = json.slice(0, -1); // remove last comma
+  json += '\n}';
+  $('#ios-output').val(json);
 }
 
 var exportXML = function(result){
-  var json = {};
+  // Format: <string name="add_user">&#xf05b;</string>
+  var xml = '<?xml version="1.0" encoding="utf-8"?>\n<resources>\n';
   for(var i = 0, l = result.length; i < l; i++){
-    json[result[i][1]] = '\\u' + result[i][2];
+    xml += '<string name="' + result[i][1] + '">&#x' + result[i][2] + ';</string>\n';
   }
-  $('#android-output').val(JSON.stringify(json));
+  xml += '</resources>';
+  $('#android-output').val(xml);
 }
