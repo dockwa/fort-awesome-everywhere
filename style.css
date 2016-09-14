@@ -3,3 +3,8 @@
   display: table;
   margin: auto;
 }
+
+.kit-id-example{
+  width: 400px;
+  max-width: 100%;
+}
