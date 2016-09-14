@@ -5,8 +5,8 @@ $(function(){
     getData(kitID, exportJSON);
   });
 
-  $('#andriod-button').click(function(){
-    var kitID = $('input[name=andriod_kit_id]').val();
+  $('#android-button').click(function(){
+    var kitID = $('input[name=android_kit_id]').val();
     getData(kitID, exportXML);
   });
 
@@ -49,5 +49,5 @@ var exportXML = function(result){
   for(var i = 0, l = result.length; i < l; i++){
     json[result[i][1]] = '\\u' + result[i][2];
   }
-  $('#andriod-output').val(JSON.stringify(json));
+  $('#android-output').val(JSON.stringify(json));
 }
