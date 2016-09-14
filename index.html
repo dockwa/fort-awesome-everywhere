@@ -1,39 +1,81 @@
-<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<script>
-  $(function(){
-    $('button').click(function(){
-      var kitID = $('input[name=kit_id]').val();
-      $.get("https://use.fortawesome.com/kits/" + kitID + "/" + kitID + ".css", function( data ) {
-        var prefix = data.match(/}.([a-zA-Z0-9-_]+){/);
-        if(prefix == null){
-          alert('Your data is not in the correct format.');
-          return;
-        }
-        var result = [];
-        var regex = new RegExp("." + prefix[1] + "-([a-zA-Z\-]+):before{content:'\\\\([a-zA-Z0-9]+)'}", "gi");
-        var test = regex.exec(data);
-        result.push(test);
-        while (test != null) {
-          test = regex.exec(data);
-          if(test != null){
-            result.push(test);
-          }
-        }
+<!doctype html>
+<html>
+  <head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
 
-        var json = {};
-        for(var i = 0, l = result.length; i < l; i++){
-          json[result[i][1]] = '\\u' + result[i][2];
-        }
-        console.log(json);
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
 
-      })
-      .fail(function() {
-        alert('Your kit could not be found');
-      });
+    <div class="container">
+      <h1 class="m-a-1 text-xs-center">Fort Awesome Everywhere</h1>
 
-    });
-  });
-</script>
-<input type="text" name="kit_id">
+      <ul class="nav nav-pills m-b-3">
+        <li class="nav-item">
+          <a class="nav-link active" href="#web">Web</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#ios">iOS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#andriod">Andriod</a>
+        </li>
+      </ul>
 
-<button>Run the thing</button>
+      <div class="web-container">
+        <a name="web"></a>
+        <h2>On the Web</h2>
+        <p>Use it the way you would normally use it.</p>
+      </div>
+
+      <hr>
+
+      <div class="ios-container">
+        <a name="ios"></a>
+        <h2>On iOS</h2>
+        <p>1: Pull this library into your iOS application</p>
+        <div class="form-group">
+          <label>Fort Awesome Kit ID</label>
+          <div class="row m-b-1">
+            <div class="col-sm-6">
+              <input placeholder="xxxxxxxx" class="form-control" type="text" name="ios_kit_id">
+            </div>
+            <div class="col-sm-2">
+              <button id="ios-button" class="btn btn-primary">Export JSON Map</button>
+            </div>
+          </div>
+          <textarea id="ios-output" class="form-control" placeholder="Output JSON..." rows="10"></textarea>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="andriod-container">
+        <a name="andriod"></a>
+        <h2>On Andriod</h2>
+        <p>1: Pull this library into your Andriod application</p>
+        <div class="form-group">
+          <label>Fort Awesome Kit ID</label>
+          <div class="row m-b-1">
+            <div class="col-sm-6">
+              <input placeholder="xxxxxxxx" class="form-control" type="text" name="andriod_kit_id">
+            </div>
+            <div class="col-sm-2">
+              <button id="andriod-button" class="btn btn-primary">Export XML Map</button>
+            </div>
+          </div>
+          <textarea id="andriod-output" class="form-control" placeholder="Output XML..." rows="10"></textarea>
+        </div>
+      </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
+
+    <script src="script.js"></script>
+
+  </body>
+</html>
