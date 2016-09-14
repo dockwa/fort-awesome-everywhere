@@ -10,6 +10,11 @@ $(function(){
     getData(kitID, exportXML);
   });
 
+  var textarea = document.getElementsByTagName('textarea');
+  for(var i = 0, l = textarea.length; i < l; i++){
+    textarea[i].addEventListener("focus", function(){this.select()});
+  }
+
 });
 
 var getData = function(kitID, exportFunction){
