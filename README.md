@@ -84,3 +84,38 @@ dependencies {
     compile 'com.shamanland:fonticon:0.1.9'
 }
 ```
+
+4) To set a font icon in a layout, create a TextView and set its ```android:text``` attribute to ```@string/name_of_icon```.
+
+5) Then go to the corresponding Java class for that layout and call the method below on the TextView. This will also enable Android Studio to find the actual icon and show it in the layout file. 
+
+```java
+textView.setTypeface(Typeface.createFromAsset(context.getAssets(), YOUR_FONT_FILE_NAME.ttf));
+```
+
+6) To set a font icon in a TextView programmatically - for example, if you need to determine at run time which icon to show - you will need to translate between the string resource xml file and the identifiers. You can do this by implementing a method like the one below: 
+```java
+public static String fontIconCodeFromIdentifier(String identifier) {
+    if (identifier == null) { return ""; }
+
+    int resourceID = getContext().getResources().getIdentifier(getContext().getPackageName() + ":string/" + identifier, null, null);
+    if (resourceID == 0) { return ""; }
+
+    String iconCode = getContext().getResources().getString(resourceID);
+    return iconCode;
+}
+```
+
+7) To use a font icon as a Drawable, _for each icon_ make an xml file like the one below, save it as ```icon_name.xml``` and put it in res/xml (prefixing with ```icon_``` will help keep your res/xml folder organized).
+```xml
+<font-icon
+    xmlns:android="http://schemas.android.com/apk/res-auto"
+    android:text="@string/icon_name_from_string_resource_file"
+    android:textSize="40sp"
+    android:textColor="@android:color/black" />
+```
+Then call this method in your to create the Drawable, passing in the name of the xml file you just created. 
+```java
+Drawable icon = FontIconDrawable.inflate(getResources(), R.xml.icon_name);
+```
+You can also find more info from the [fonticon repo](https://github.com/shamanland/fonticon#usage).
