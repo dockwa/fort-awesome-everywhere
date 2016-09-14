@@ -1,11 +1,11 @@
-# fort-awesome-everywhere
+# Fort Awesome Everywhere
 Fort Awesome on the web, iOS, and Andriod, for fun and profit!
 
 But why?
 * Are you tired of having 6,000,000 pngs floating around your iOS and Android projects? Are you tired of having to resize your images for @2x, @3x, hdpi, mdpi, xhdpi, xxhdpi, xxxhdpi, etc?
 * Are you tired of having to keep your image assets in sync across three different platforms at endless sizes and densities?
-* Do you wish you could instead use a single file that stored all of your images and icons, at _infinite_ resolution, future proofed for any new device sizes and screen technologies? 
-* Do you wish you could change the color of your icons by simply specifying a color in a layout file or code? 
+* Do you wish you could instead use a single file that stored all of your images and icons, at _infinite_ resolution, future proofed for any new device sizes and screen technologies?
+* Do you wish you could change the color of your icons by simply specifying a color in a layout file or code?
 
 But how? This sounds too good to be true...
 
@@ -18,13 +18,13 @@ Without further ado...
 1) Download your .ttf font file from Fort Awesome, add it to your Xcode project.
 
 
-2) Go to your Fort Awesome dashboard, copy the ID at the end of the url, and paste it [here](https://knotlabs.github.io/fort-awesome-everywhere/). Then click **Export JSON Map**, copy the JSON, paste it into a text file, and save it as ```FONT_NAME_font_map.json``` (or whatever you prefer). Add this JSON file to your Xcode project. 
+2) Go to your Fort Awesome dashboard, copy the ID at the end of the url, and paste it [here](https://knotlabs.github.io/fort-awesome-everywhere/). Then click **Export JSON Map**, copy the JSON, paste it into a text file, and save it as ```FONT_NAME_font_map.json``` (or whatever you prefer). Add this JSON file to your Xcode project.
 
 
 3) Add the [FontAwesomeKit Cocoapod](https://github.com/PrideChung/FontAwesomeKit) to your project.
-```ruby 
+```ruby
 'pod FontAwesomeKit/Core'
-``` 
+```
 
 
 4) Subclass FAKIcon and override this method as below:
@@ -35,7 +35,7 @@ Without further ado...
     dispatch_once(&onceToken, ^{
         [self registerIconFontWithURL:[[NSBundle mainBundle] URLForResource:@"YOUR_FONT_FILE_NAME" withExtension:@"ttf"]];
     });
-    
+
     UIFont *font = [UIFont fontWithName:@"YOUR_FORT_AWESOME_FONT_NAME" size:size];
     NSAssert(font, @"UIFont object should not be nil, check if the font file is added to the application bundle and you're using the correct font name.");
     return font;
@@ -49,7 +49,7 @@ Without further ado...
 {
     NSString *path = [[NSBundle bundleForClass:self] pathForResource:@"FONT_NAME_font_map" ofType:@"json"];
     NSData *jsonData = [NSData dataWithContentsOfFile:path];
-    
+
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
     return json;
 }
@@ -60,11 +60,11 @@ Without further ado...
 + (instancetype)iconWithIdentifier:(NSString *)identifier size:(CGFloat)size error:(NSError **)error;
 ```
 
-7) You can check out the [FontAwesomeKit Cocoapod](https://github.com/PrideChung/FontAwesomeKit) for more details on how to use font icons in your app, but generally you'll either want to create an attributed string or an image from an FAKIcon instance, and then use those in a UILabel, UITextView, or UIImageView. See 
-```objective-c 
+7) You can check out the [FontAwesomeKit Cocoapod](https://github.com/PrideChung/FontAwesomeKit) for more details on how to use font icons in your app, but generally you'll either want to create an attributed string or an image from an FAKIcon instance, and then use those in a UILabel, UITextView, or UIImageView. See
+```objective-c
 - (NSAttributedString *)attributedString;
-``` 
-and 
+```
+and
 ```objective-c
 - (UIImage *)imageWithSize:(CGSize)imageSize;
 ```
@@ -72,13 +72,13 @@ and
 
 ## Android:
 
-1) Download your .ttf font file from Fort Awesome, add it to your Android Studio project into the src/main/assets folder (or wherever you prefer). 
+1) Download your .ttf font file from Fort Awesome, add it to your Android Studio project into the src/main/assets folder (or wherever you prefer).
 
 
-2) Go to your Fort Awesome dashboard, copy the ID at the end of the url, and paste it [here](https://knotlabs.github.io/fort-awesome-everywhere/). Then click **Export XML Map**, copy the XML, paste it into a text file, and save it as ```icons.xml``` (or whatever you prefer). Add this string resource XML file to your Android Studio project in the res/values folder. 
+2) Go to your Fort Awesome dashboard, copy the ID at the end of the url, and paste it [here](https://knotlabs.github.io/fort-awesome-everywhere/). Then click **Export XML Map**, copy the XML, paste it into a text file, and save it as ```icons.xml``` (or whatever you prefer). Add this string resource XML file to your Android Studio project in the res/values folder.
 
 
-3) Add the [Fonticon library](https://github.com/shamanland/fonticon) to your project. If you use Gradle: 
+3) Add the [Fonticon library](https://github.com/shamanland/fonticon) to your project. If you use Gradle:
 ```groovy
 dependencies {
     compile 'com.shamanland:fonticon:0.1.9'
