@@ -93,7 +93,7 @@ dependencies {
 textView.setTypeface(Typeface.createFromAsset(context.getAssets(), YOUR_FONT_FILE_NAME.ttf));
 ```
 
-6) To set a font icon in a TextView programmatically - for example, if you need to determine at run time which icon to show - you will need to translate between the string resource xml file and the identifiers. You can do this by implementing a method like the one below: 
+6) To set a font icon in a TextView programmatically - for example, if you need to determine at run time which icon to show, or using a control that only accepts Drawables - you will need to translate between the string resource xml file and the identifiers. You can do this by implementing a method like the one below: 
 ```java
 public static String fontIconCodeFromIdentifier(String identifier) {
     if (identifier == null) { return ""; }
