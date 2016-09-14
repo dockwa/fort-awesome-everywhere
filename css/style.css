@@ -8,3 +8,8 @@
   width: 400px;
   max-width: 100%;
 }
+
+hr{
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
