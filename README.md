@@ -94,7 +94,7 @@ FontIconTypefaceHolder.init(getAssets(), "YOUR_FONT_FILE_NAME.ttf");
 6) Then go to the corresponding Java class for that layout and call the method below on the TextView. This will also enable Android Studio to find the actual icon and show it in the layout file. 
 
 ```java
-textView.setTypeface(Typeface.createFromAsset(context.getAssets(), YOUR_FONT_FILE_NAME.ttf));
+textView.setTypeface(Typeface.createFromAsset(context.getAssets(), "YOUR_FONT_FILE_NAME.ttf"));
 ```
 
 7) To set a font icon in a TextView programmatically - for example, if you need to determine at run time which icon to show, or using a control that only accepts Drawables - you will need to translate between the string resource xml file and the identifiers. You can do this by implementing a method like the one below: 
