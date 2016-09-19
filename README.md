@@ -84,16 +84,20 @@ dependencies {
     compile 'com.shamanland:fonticon:0.1.9'
 }
 ```
+4) In your Application's ```onCreate()``` method, call this method to load the font. 
+```java 
+FontIconTypefaceHolder.init(getAssets(), "YOUR_FONT_FILE_NAME.ttf");
+```
 
-4) To set a font icon in a layout, create a TextView and set its ```android:text``` attribute to ```@string/name_of_icon```.
+5) To set a font icon in a layout, create a TextView and set its ```android:text``` attribute to ```@string/name_of_icon```.
 
-5) Then go to the corresponding Java class for that layout and call the method below on the TextView. This will also enable Android Studio to find the actual icon and show it in the layout file. 
+6) Then go to the corresponding Java class for that layout and call the method below on the TextView. This will also enable Android Studio to find the actual icon and show it in the layout file. 
 
 ```java
 textView.setTypeface(Typeface.createFromAsset(context.getAssets(), YOUR_FONT_FILE_NAME.ttf));
 ```
 
-6) To set a font icon in a TextView programmatically - for example, if you need to determine at run time which icon to show, or using a control that only accepts Drawables - you will need to translate between the string resource xml file and the identifiers. You can do this by implementing a method like the one below: 
+7) To set a font icon in a TextView programmatically - for example, if you need to determine at run time which icon to show, or using a control that only accepts Drawables - you will need to translate between the string resource xml file and the identifiers. You can do this by implementing a method like the one below: 
 ```java
 public static String fontIconCodeFromIdentifier(String identifier) {
     if (identifier == null) { return ""; }
@@ -106,7 +110,7 @@ public static String fontIconCodeFromIdentifier(String identifier) {
 }
 ```
 
-7) To use a font icon as a Drawable, _for each icon_ make an xml file like the one below, save it as ```icon_name.xml``` and put it in res/xml (prefixing with ```icon_``` will help keep your res/xml folder organized).
+8) To use a font icon as a Drawable, _for each icon_ make an xml file like the one below, save it as ```icon_name.xml``` and put it in res/xml (prefixing with ```icon_``` will help keep your res/xml folder organized).
 ```xml
 <font-icon
     xmlns:android="http://schemas.android.com/apk/res-auto"
