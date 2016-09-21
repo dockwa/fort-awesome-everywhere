@@ -1,7 +1,5 @@
 # Fort Awesome Everywhere
-Fort Awesome on the web, iOS, and Andriod, for fun and profit!
 
-But why?
 * Are you tired of having 6,000,000 pngs floating around your iOS and Android projects? Are you tired of having to resize your images for @2x, @3x, hdpi, mdpi, xhdpi, xxhdpi, xxxhdpi, etc?
 * Are you tired of having to keep your image assets in sync across three different platforms at endless sizes and densities?
 * Do you wish you could instead use a single file that stored all of your images and icons, at _infinite_ resolution, future proofed for any new device sizes and screen technologies?
@@ -10,8 +8,6 @@ But why?
 But how? This sounds too good to be true...
 
 **Fear not friends, there is a solution to all of your above problems and wishes! By using a custom Fort Awesome icon font and this simple script and tutorial, you can enjoy all of these benefits with barely any effort.**
-
-Without further ado...
 
 ## iOS:
 
@@ -70,56 +66,81 @@ and
 ```
 
 
-## Android:
+# Android:
+
+## Setup 
 
 1) Download your .ttf font file from Fort Awesome, add it to your Android Studio project into the src/main/assets folder (or wherever you prefer).
 
 
-2) Go to your Fort Awesome dashboard, copy the ID at the end of the url, and paste it [here](https://knotlabs.github.io/fort-awesome-everywhere/). Then click **Export XML Map**, copy the XML, paste it into a text file, and save it as ```icons.xml``` (or whatever you prefer). Add this string resource XML file to your Android Studio project in the res/values folder.
+2) Go to your Fort Awesome dashboard, copy the ID at the end of the url, and paste it [here](https://knotlabs.github.io/fort-awesome-everywhere/). 
+Then click **Export XML Map**, copy the XML, paste it into a text file, and save it as ```icons.xml``` (or whatever you prefer). 
+Add this string resource XML file to your Android Studio project in the res/values folder.
 
 
-3) Add the [Fonticon library](https://github.com/shamanland/fonticon) to your project. If you use Gradle:
+3) Add this [Fonticon library](https://github.com/shamanland/fonticon) to your project. If you use Gradle:
 ```groovy
 dependencies {
     compile 'com.shamanland:fonticon:0.1.9'
 }
 ```
+
 4) In your Application's ```onCreate()``` method, call this method to load the font. 
 ```java 
 FontIconTypefaceHolder.init(getAssets(), "YOUR_FONT_FILE_NAME.ttf");
 ```
 
-5) To set a font icon in a layout, create a TextView and set its ```android:text``` attribute to ```@string/name_of_icon```.
+## Usage
 
-6) Then go to the corresponding Java class for that layout and call the method below on the TextView. This will also enable Android Studio to find the actual icon and show it in the layout file. 
+### XML Layout
+To set a font icon in an XML layout: 
 
-```java
-textView.setTypeface(Typeface.createFromAsset(context.getAssets(), "YOUR_FONT_FILE_NAME.ttf"));
-```
+- Ceate a TextView in XML and set its ```android:text``` attribute to ```@string/name_of_icon```.
 
-7) To set a font icon in a TextView programmatically - for example, if you need to determine at run time which icon to show, or using a control that only accepts Drawables - you will need to translate between the string resource xml file and the identifiers. You can do this by implementing a method like the one below: 
-```java
-public static String fontIconCodeFromIdentifier(String identifier) {
-    if (identifier == null) { return ""; }
+- When you inflate the layout in code, set the TextView's typeface as below:
 
-    int resourceID = getContext().getResources().getIdentifier(getContext().getPackageName() + ":string/" + identifier, null, null);
-    if (resourceID == 0) { return ""; }
+     ```java
+    textView.setTypeface(Typeface.createFromAsset(context.getAssets(), "YOUR_FONT_FILE_NAME.ttf"));
+    ```
+### In Code
 
-    String iconCode = getContext().getResources().getString(resourceID);
-    return iconCode;
-}
-```
+- First you need to use the string resource XML file to translate between the human-friendly identifiers in Fort Awesome and raw character codes. You can do this by implementing a method like the one below: 
 
-8) To use a font icon as a Drawable, _for each icon_ make an xml file like the one below, save it as ```icon_name.xml``` and put it in res/xml (prefixing with ```icon_``` will help keep your res/xml folder organized).
-```xml
-<font-icon
-    xmlns:android="http://schemas.android.com/apk/res-auto"
-    android:text="@string/icon_name_from_string_resource_file"
-    android:textSize="40sp"
-    android:textColor="@android:color/black" />
-```
-Then call this method in your to create the Drawable, passing in the name of the xml file you just created. 
-```java
-Drawable icon = FontIconDrawable.inflate(getContext(), R.xml.icon_name);
-```
+    ```java
+    public static String fontIconCodeFromIdentifier(Context context, String identifier) {
+        if (identifier == null) { return null; }
+
+        String xmlLookup = context.getPackageName() + ":string/" + identifier;
+        int resourceID = context.getResources().getIdentifier(xmlLookup, null, null);
+        if (resourceID == 0) { return null; }
+
+        String iconCode = context.getResources().getString(resourceID);
+        return iconCode;
+    }
+     ```
+    #### Directly in a TextView
+    ```java
+    String code = fontIconCodeFromIdentifier(getContext(), "fort_awesome_identifier");
+    if (code != null) {
+        textView.setText(code);
+    }
+    ```
+
+    #### As a Drawable
+    
+- To use a font icon as a Drawable, you must _for each icon_ make an XML file like the one below, save it as ```icon_name.xml``` and put it in res/xml (prefixing with ```icon_``` will help keep your res/xml folder organized). Change ```textColor``` and ```textSize``` to whatever suits your needs. 
+
+    ```xml
+     <font-icon
+        xmlns:android="http://schemas.android.com/apk/res-auto"
+        android:text="@string/icon_name_from_string_resource_file"
+        android:textSize="40sp"
+        android:textColor="@android:color/black" />
+    ```
+
+- Then call this method in your to create the Drawable, passing in the name of the xml file you just created. 
+    
+    ```android
+    Drawable icon = FontIconDrawable.inflate(getContext(), R.xml.icon_name);
+    ```
 You can also find more info from the [fonticon repo](https://github.com/shamanland/fonticon#usage).
