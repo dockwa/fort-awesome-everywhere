@@ -120,6 +120,6 @@ public static String fontIconCodeFromIdentifier(String identifier) {
 ```
 Then call this method in your to create the Drawable, passing in the name of the xml file you just created. 
 ```java
-Drawable icon = FontIconDrawable.inflate(getResources(), R.xml.icon_name);
+Drawable icon = FontIconDrawable.inflate(getContext(), R.xml.icon_name);
 ```
 You can also find more info from the [fonticon repo](https://github.com/shamanland/fonticon#usage).
