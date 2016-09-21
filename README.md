@@ -23,38 +23,41 @@ Add this JSON file to your Xcode project.
 
 3) Add the [FontAwesomeKit Cocoapod](https://github.com/PrideChung/FontAwesomeKit) to your project.
 
-    ```ruby
-    'pod FontAwesomeKit/Core'
-    ```
+```ruby
+'pod FontAwesomeKit/Core'
+```
 
 
 4) Subclass FAKIcon and override ```+ (UIFont *)iconFontWithSize:(CGFloat)size``` as below
-    ```objective-c
-    + (UIFont *)iconFontWithSize:(CGFloat)size
-    {
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            [self registerIconFontWithURL:[[NSBundle mainBundle] URLForResource:@"YOUR_FONT_FILE_NAME" withExtension:@"ttf"]];
-        });
 
-        UIFont *font = [UIFont fontWithName:@"YOUR_FORT_AWESOME_FONT_NAME" size:size];
-        NSAssert(font, @"UIFont object should not be nil, check if the font file is added to the application bundle and you're using the correct font name.");
-       return font;
-    }
-    ```
+```objective-c
++ (UIFont *)iconFontWithSize:(CGFloat)size
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+    [self registerIconFontWithURL:[[NSBundle mainBundle] URLForResource:@"YOUR_FONT_FILE_NAME" withExtension:@"ttf"]];
+    });
+
+    UIFont *font = [UIFont fontWithName:@"YOUR_FORT_AWESOME_FONT_NAME" size:size];
+    NSAssert(font, @"UIFont object should not be nil, check if the font file is added to the application bundle and you're using the correct font name.");
+    return font;
+}
+```
 
 5) Also override the ```+ (NSDictionary *)allIcons``` method as below. This is where the magic happens. In this method, we will load up the json mapping file that we generated earlier to map the human-friendly identifiers (like "fa-search") to their computer-friendly character codes (like "f028").
 
-    ```objective-c
-    + (NSDictionary *)allIcons
-    {
-        NSString *path = [[NSBundle bundleForClass:self] pathForResource:@"FONT_NAME_font_map" ofType:@"json"];
-        NSData *jsonData = [NSData dataWithContentsOfFile:path];
 
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
-        return json;
-    }
-    ```
+```objective-c
++ (NSDictionary *)allIcons
+{
+    NSString *path = [[NSBundle bundleForClass:self] pathForResource:@"FONT_NAME_font_map" ofType:@"json"];
+    NSData *jsonData = [NSData dataWithContentsOfFile:path];
+
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
+    return json;
+}
+```
+
 ## Usage
 
 ### Code
@@ -69,6 +72,7 @@ Add this JSON file to your Xcode project.
     - (UIImage *)imageWithSize:(CGSize)imageSize;
     ```
 - To show your font icon in a UILabel or UITextView, create an attributed string from your font icon by calling:
+
     ```objective-c
     - (NSAttributedString *)attributedString;
     ```
