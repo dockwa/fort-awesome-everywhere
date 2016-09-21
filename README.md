@@ -60,7 +60,7 @@ Add this JSON file to your Xcode project.
 
 ## Usage
 
-### Code
+### In Code
 
 - To use a custom Fort Awesome icon in your app, call this method from your FAKIcon subclass and pass in your identifier
     ```objective-c
@@ -105,7 +105,7 @@ FontIconTypefaceHolder.init(getAssets(), "YOUR_FONT_FILE_NAME.ttf");
 
 ## Usage
 
-### XML Layout
+### In XML Layout
 To set a font icon in an XML layout: 
 
 - Ceate a TextView in XML and set its ```android:text``` attribute to ```@string/name_of_icon```.
@@ -115,7 +115,9 @@ To set a font icon in an XML layout:
      ```java
     textView.setTypeface(Typeface.createFromAsset(context.getAssets(), "YOUR_FONT_FILE_NAME.ttf"));
     ```
-### Code
+    
+
+### In Code
 
 - First you need to use the string resource XML file to translate between the human-friendly identifiers in Fort Awesome and raw character codes. You can do this by implementing a method like the one below: 
 
