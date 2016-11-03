@@ -131,8 +131,7 @@ let attributedString = icon.attributedString()
 ```objective-c
 NSAttributedString *attributedString = [icon attributedString];
 ```
-#
-###### Check out the excellent [FontAwesomeKit](https://github.com/PrideChung/FontAwesomeKit) library for more details. 
+###### Check out the excellent [FontAwesomeKit](https://github.com/PrideChung/FontAwesomeKit#example-usage) library for more details. 
 
 #
 #
@@ -229,5 +228,4 @@ Note: The opening tag must be ```font-icon```, exactly as it is below. Change ``
 ```java
 Drawable icon = FontIconDrawable.inflate(getContext(), R.xml.icon_name);
 ```
-#
 ###### Check out the excellent [fonticon](https://github.com/shamanland/fonticon#usage) library for more details.
