@@ -52,15 +52,18 @@ Click **Export**, and then click Download. Add the downloaded JSON file to your 
 
 #### 4) Subclass FAKIcon and override ```class func iconFontWithSize(size: CGFloat) -> UIFont``` as below:
 ```swift 
-override class func iconFontWithSize(size: CGFloat) -> UIFont {
-    var token: dispatch_once_t = 0
-    dispatch_once(&token, {() -> Void in
-        super.registerIconFontWithURL(NSBundle.mainBundle().URLForResource("YOUR_FONT_FILE_NAME", withExtension: "ttf")!)
-    })
-    return UIFont(name: "YOUR_FONT_NAME", size: size)!
+class MyFortAwesomeFont: FAKIcon {
+    override class func iconFontWithSize(size: CGFloat) -> UIFont {
+        var token: dispatch_once_t = 0
+        dispatch_once(&token, {() -> Void in
+             super.registerIconFontWithURL(NSBundle.mainBundle().URLForResource("YOUR_FONT_FILE_NAME", withExtension: "ttf")!)
+        })
+        return UIFont(name: "YOUR_FONT_NAME", size: size)!
+    }
 }
 ```
 ```objective-c
+@implementation MyFortAwesomeFont: FAKIcon
 + (UIFont *)iconFontWithSize:(CGFloat)size
 {
     static dispatch_once_t onceToken;
@@ -72,21 +75,25 @@ override class func iconFontWithSize(size: CGFloat) -> UIFont {
     NSAssert(font, @"UIFont object should not be nil, check if the font file is added to the application bundle and you're using the correct font name.");
     return font;
 }
+@end
 ```
 
 
 #### 5) Override ```class func allIcons() -> [NSObject : AnyObject]``` as below:
 This is where the magic happens. In this method, we will load up the json mapping file that we generated earlier to map the human-friendly identifiers (like "fa-search") to their computer-friendly character codes (like "f028").
 ```swift
-override class func allIcons() -> [NSObject : AnyObject] {
-    let path = NSBundle(forClass: self).pathForResource("YOUR_FONT_NAME_font_map", ofType: "json")!
-    let jsonData = NSData(contentsOfFile: path)!
+class MyFortAwesomeFont: FAKIcon {
+    override class func allIcons() -> [NSObject : AnyObject] {
+        let path = NSBundle(forClass: self).pathForResource("YOUR_FONT_NAME_font_map", ofType: "json")!
+        let jsonData = NSData(contentsOfFile: path)!
    
-    let json = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: .AllowFragments)
-    return json as! [String : String]
+        let json = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: .AllowFragments)
+        return json as! [String : String]
+    }
 }
 ```
 ```objective-c
+@implementation MyFortAwesomeFont: FAKIcon
 + (NSDictionary *)allIcons
 {
     NSString *path = [[NSBundle bundleForClass:self] pathForResource:@"YOUR_FONT_NAME_font_map" ofType:@"json"];
@@ -95,6 +102,7 @@ override class func allIcons() -> [NSObject : AnyObject] {
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
     return json;
 }
+@end
 ```
 
 
@@ -104,9 +112,9 @@ override class func allIcons() -> [NSObject : AnyObject] {
 
 #### 1) Create an instance of your icon subclass:
 ```swift 
-let icon: YourIconSubclass?
+let icon: MyFortAwesomeFont?
 do {
-  icon = try YourIconSubclass(identifier: "icon-identifer", size: 15)
+  icon = try MyFortAwesomeFont(identifier: "icon-identifer", size: 15)
 } catch let error as NSError {
   print(error.localizedDescription)
 }
@@ -188,7 +196,7 @@ textView.setTypeface(Typeface.createFromAsset(context.getAssets(), "YOUR_FONT_FI
 #### 1) Get the icon code:
 You can get the icon code by implementing a method like the one below. It looks up the identifier in the ```icons.xml``` file we created earlier, and returns the corresponding Unicode character to set on a TextView. 
 ```java
-public class MyAwesomeIcons {
+public class MyFortAwesomeFont {
     public static String fontIconCodeFromIdentifier(Context context, String identifier) {
         if (identifier == null) { return null; }
     
@@ -204,7 +212,7 @@ public class MyAwesomeIcons {
  
 #### 2) Set the typeface and text on the TextView:
 ```java
-String code = MyAwesomeIcons.fontIconCodeFromIdentifier(getContext(), "fort_awesome_identifier");
+String code = MyFortAwesomeFont.fontIconCodeFromIdentifier(getContext(), "fort_awesome_identifier");
 if (code != null) {
     textView.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "YOUR_FONT_FILE_NAME.ttf"));
     textView.setText(code);
