@@ -19,7 +19,7 @@
 # What is Fort Awesome Everywhere? 
 ## Fort Awesome Everywhere is a **guide** and **tool** to bring CSS-like ease of use to custom Fort Awesome icon fonts to native iOS and Android development. 
 
-###### Font Awesome vs Fort Awesome. What is the difference? 
+##### Font Awesome vs Fort Awesome. What is the difference? 
 * [Font Awesome](http://fontawesome.io/) is a fantastic _free_ font icon set. If you only need generic/standard icons in your app, do yourself a favor and use Font Awesome; using Font Awesome natively in iOS is trivial with the help of a [third party library](https://github.com/PrideChung/FontAwesomeKit). 
 * [Fort Awesome](https://fortawesome.com) is like Font Awesome, but adds the ability to upload custom icons to create your own custom font icon sets. Its fantastic for when your app or brand has custom/proprietary icons that are unique to your brand.
 
@@ -151,7 +151,7 @@ Then click **Export XML Map**, copy the XML, paste it into a text file, and save
  _This is where the magic happens; this file maps the Unicode characters to their Fort Awesome identifiers, and since it is a string resource XML file, Android Studio will autocomplete these identifiers in code and layout files._
 
 
-#### 3) Add the [fonticon](https://github.com/shamanland/fonticon) library to your project. If you use Gradle:
+#### 3) Add the [fonticon](https://github.com/shamanland/fonticon#gradle-dependency) library to your project. If you use Gradle:
 ```groovy
 dependencies {
     compile 'com.shamanland:fonticon:0.1.9'
