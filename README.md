@@ -10,7 +10,6 @@
 * A **single file to update** when new icons are added or changed. 
 * Set or **change the color of any icon at runtime** by simply specifying a color in a layout file or in code.
 * **Infinite resolution with a tiny file size**. Since icons are vector graphics, they can be scaled infinitely to any size and take up a tiny amount of space on disk.*
-* What are you waiting for? Lets see **how easy it is!** 
 
 ###### *A sample large production app's entire icon set comes in at around ~32 KB. No more @2x, @3x, hdpi, mdpi, xhdpi, xxhdpi, xxxhdpi. Just one, tiny-file-size, infinitely scalable vector. 
 
