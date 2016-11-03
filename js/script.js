@@ -6,6 +6,14 @@ $(function(){
     getData(kitID, exportXML);
   });
 
+  $('#download-json').click(function(){
+    downloadJSON();
+  });
+
+  $('#download-xml').click(function(){
+    downloadXML();
+  });
+
   var textarea = document.getElementsByTagName('textarea');
   for(var i = 0, l = textarea.length; i < l; i++){
     textarea[i].addEventListener("focus", function(){this.select()});
@@ -20,6 +28,9 @@ var getData = function(kitID, exportFunction){
       alert('Your data is not in the correct format.');
       return;
     }
+    var fontNameRegex = new RegExp("@font-face{font-family:\'([a-zA-Z]+)\';", "gi");
+    fontName = fontNameRegex.exec(data)[1];
+
     var result = [];
     var regex = new RegExp("." + prefix[1] + "-([a-zA-Z0-9-_]+):before{content:'\\\\([a-zA-Z0-9]+)'}", "gi");
     var test = regex.exec(data);
@@ -45,6 +56,7 @@ var exportJSON = function(result){
   json = json.slice(0, -1); // remove last comma
   json += '\n}';
   $('#ios-output').val(json);
+  $('#download-json').show();
 }
 
 var exportXML = function(result){
@@ -55,4 +67,13 @@ var exportXML = function(result){
   }
   xml += '</resources>';
   $('#android-output').val(xml);
+  $('#download-xml').show();
+}
+
+var downloadJSON = function(){
+  download($('#ios-output').val(), fontName + ".json", "text/plain");
+}
+
+var downloadXML = function(){
+  download($('#android-output').val(), fontName + ".xml", "text/plain");
 }
