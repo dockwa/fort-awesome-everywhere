@@ -35,7 +35,7 @@ Make sure to copy the file to your project directory.
 
 
 
-#### 2) Go to your Fort Awesome [Dashboard](https://fortawesome.com/kits/), copy the ID at the end of the url, and paste it [here](https://knotlabs.github.io/fort-awesome-everywhere/). 
+#### 2) Go to your Fort Awesome [Dashboard](https://fortawesome.com/kits/), copy the ID at the end of the url, and paste it [here](https://dockwa.github.io/fort-awesome-everywhere/). 
 Click **Export**, and then click Download. Add the downloaded JSON file to your Xcode project.  
 ###### _This is where the magic happens; this file maps the Unicode characters to their Fort Awesome identifiers._
 
