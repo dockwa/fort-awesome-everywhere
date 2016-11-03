@@ -18,7 +18,7 @@
 # What is Fort Awesome Everywhere? 
 ## Fort Awesome Everywhere is a **guide** and **tool** to bring CSS-like ease of use to custom Fort Awesome icon fonts to native iOS and Android development. 
 
-### Note: Font Awesome vs Fort Awesome. What is the difference? 
+#### Note: Font Awesome vs Fort Awesome. What is the difference? 
 * [Font Awesome](http://fontawesome.io/) is a fantastic _free_ font icon set. If you only need generic/standard icons in your app, do yourself a favor and use Font Awesome; using Font Awesome natively in iOS is trivial with the help of a [third party library](https://github.com/PrideChung/FontAwesomeKit). 
 * [Fort Awesome](https://fortawesome.com) is like Font Awesome, but adds the ability to upload custom icons to create your own custom font icon sets. Its fantastic for when your app or brand has custom/proprietary icons that are unique to your brand.
 
@@ -37,7 +37,7 @@ Make sure to copy the file to your project directory.
 
 
 #### 2) Go to your Fort Awesome [Dashboard](https://fortawesome.com/kits/), copy the ID at the end of the url, and paste it [here](https://knotlabs.github.io/fort-awesome-everywhere/). 
-Then click **Export JSON Map**, copy the JSON, paste it into a text file, and save it as ```YOUR_FONT_NAME_font_map.json``` (or any name you prefer). Add this JSON file to your Xcode project.  _This is where the magic happens; this file maps the Unicode characters to their Fort Awesome identifiers._
+Click **Export**, and then click Download. Add the downloaded JSON file to your Xcode project.  _This is where the magic happens; this file maps the Unicode characters to their Fort Awesome identifiers._
 
 
 
@@ -146,8 +146,7 @@ Make sure to copy the file to your project directory.
 
 
 #### 2) Go to your Fort Awesome [Dashboard](https://fortawesome.com/kits/), copy the ID at the end of the url, and paste it [here](https://knotlabs.github.io/fort-awesome-everywhere/). 
-Then click **Export XML Map**, copy the XML, paste it into a text file, and save it as ```icons.xml``` (or any name you prefer). Add this string resource XML file to your Android Studio project in the ```res/values``` folder.
- _This is where the magic happens; this file maps the Unicode characters to their Fort Awesome identifiers, and since it is a string resource XML file, Android Studio will autocomplete these identifiers in code and layout files._
+Click **Export**, and then click Download. Add the newly downloaded```icons.xml``` XML file to your Android Studio project in the ```res/values``` folder. _This is where the magic happens; this file maps the Unicode characters to their Fort Awesome identifiers, and since it is a string resource XML file, Android Studio will autocomplete these identifiers in code and layout files._
 
 
 #### 3) Add the [fonticon](https://github.com/shamanland/fonticon#gradle-dependency) library to your project. If you use Gradle:
