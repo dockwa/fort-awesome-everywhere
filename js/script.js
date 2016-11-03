@@ -1,12 +1,8 @@
 $(function(){
 
-  $('#ios-button').click(function(){
-    var kitID = $('input[name=ios_kit_id]').val();
+  $('#export-btn').click(function(){
+    var kitID = $('input[name=kit_id]').val();
     getData(kitID, exportJSON);
-  });
-
-  $('#android-button').click(function(){
-    var kitID = $('input[name=android_kit_id]').val();
     getData(kitID, exportXML);
   });
 

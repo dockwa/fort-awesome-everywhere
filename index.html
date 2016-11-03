@@ -19,6 +19,17 @@
       <div class="text-bold">
         <p>
           Go to your Fort Awesome dashboard and copy the ID from the url and paste it below to export a JSON or XML character mapping for all of the icons. <img src="kit-id.png" class="kit-id-example">
+          <div class="form-group">
+            <label>Fort Awesome Kit ID</label>
+            <div class="row mb-1">
+              <div class="col-sm-6">
+                <input placeholder="xxxxxxxx" class="form-control" type="text" name="kit_id">
+              </div>
+              <div class="col-sm-2">
+                <button id="export-btn" class="btn btn-success">Export</button>
+              </div>
+            </div>
+          </div>
         </p>
       </div>
 
@@ -26,34 +37,13 @@
 
       <div class="row">
         <div class="col-md-6">
-          <h2>Export JSON (iOS)</h2>
-          <div class="form-group">
-            <label>Fort Awesome Kit ID</label>
-            <div class="row mb-1">
-              <div class="col-sm-6">
-                <input placeholder="xxxxxxxx" class="form-control" type="text" name="ios_kit_id">
-              </div>
-              <div class="col-sm-2">
-                <button id="ios-button" class="btn btn-success">Export JSON Mapping</button>
-              </div>
-            </div>
-          </div>
+          <h3>JSON Export (iOS)</h3>
           <textarea id="ios-output" class="form-control" placeholder="Output JSON..." rows="10"></textarea>
           <a class="mt-1 d-block" href="https://github.com/KnotLabs/fort-awesome-everywhere/blob/gh-pages/README.md#ios">Finish iOS Setup...</a>
         </div>
 
         <div class="col-md-6">
-          <h2>Export XML (Android)</h2>
-          <div class="form-group">
-            <label>Fort Awesome Kit ID</label>
-            <div class="row mb-1">
-              <div class="col-sm-6">
-                <input placeholder="xxxxxxxx" class="form-control" type="text" name="android_kit_id">
-              </div>
-              <div class="col-sm-2">
-                <button id="android-button" class="btn btn-success">Export XML Mapping</button>
-              </div>
-            </div>
+            <h3>XML Export (Android)</h3>
             <textarea id="android-output" class="form-control" placeholder="Output XML..." rows="10"></textarea>
             <a class="mt-1 d-block" href="https://github.com/KnotLabs/fort-awesome-everywhere/blob/gh-pages/README.md#android">Finish Android Setup...</a>
           </div>
