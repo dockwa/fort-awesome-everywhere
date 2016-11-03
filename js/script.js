@@ -28,7 +28,7 @@ var getData = function(kitID, exportFunction){
       alert('Your data is not in the correct format.');
       return;
     }
-    var fontNameRegex = new RegExp("@font-face{font-family:\'([a-zA-Z]+)\';", "gi");
+    var fontNameRegex = new RegExp("@font-face{font-family:\'([a-zA-Z0-9_]+)\';", "gi");
     fontName = fontNameRegex.exec(data)[1];
 
     var result = [];
@@ -71,9 +71,9 @@ var exportXML = function(result){
 }
 
 var downloadJSON = function(){
-  download($('#ios-output').val(), fontName + ".json", "text/plain");
+  download($('#ios-output').val(), fontName.toLowerCase() + "_icons.json", "text/plain");
 }
 
 var downloadXML = function(){
-  download($('#android-output').val(), fontName + ".xml", "text/plain");
+  download($('#android-output').val(), fontName.toLowerCase() + "_icons.xml", "text/plain");
 }
