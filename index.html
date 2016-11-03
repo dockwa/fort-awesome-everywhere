@@ -2,9 +2,7 @@
 <html>
   <head>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="css/prism.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <title>Fort Awesome Everywhere</title>
   </head>
@@ -13,124 +11,50 @@
 
 
     <div class="container">
-      <h1 class="m-a-1 text-xs-center">Fort Awesome Everywhere</h1>
+      <h1 class="m-1 text-xs-center">Fort Awesome Everywhere</h1>
+      <a class="readme" href="https://github.com/KnotLabs/fort-awesome-everywhere/blob/gh-pages/README.md">Check out our Readme to see how you can add Fort Awesome Everywhere!</a>
 
-      <ul class="nav nav-pills m-b-3">
-        <li class="nav-item">
-          <a class="nav-link active" href="#web">Web</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="#ios">iOS</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="#android">Android</a>
-        </li>
-      </ul>
+      <hr>
 
-      <p>Fort Awesome on the web, iOS, and Andriod, for fun and profit!</p>
-      <p>But why?</p>
-      <ul>
-      <li>Are you tired of having 6,000,000 pngs floating around your iOS and Android projects? Are you tired of having to resize your images for @2x, @3x, hdpi, mdpi, xhdpi, xxhdpi, xxxhdpi, etc?</li>
-      <li>Are you tired of having to keep your image assets in sync across three different platforms at endless sizes and densities?</li>
-      <li>Do you wish you could instead use a single file that stored all of your images and icons, at <em>infinite</em> resolution, future proofed for any new device sizes and screen technologies?</li>
-      <li>Do you wish you could change the color of your icons by simply specifying a color in a layout file or code?</li>
-      </ul>
-      <p>But how? This sounds too good to be true&hellip;</p>
-      <p><strong>Fear not friends, there is a solution to all of your above problems and wishes! By using a custom Fort Awesome icon font and this simple script and tutorial, you can enjoy all of these benefits with barely any effort.</strong></p>
-      <p>Without further ado&hellip;</p>
-
-      <div class="web-container">
-        <a name="web"></a>
-        <h2>Web:</h2>
-        <p>Head to <a href="https://fortawesome.com">fortawesome.com</a> and copy the embed code from the documentation and add it to the <code>&lt;head&gt;</code> of your HTML document.</p>
-        <pre><code class="language-markup">&lt;script src="https://use.fortawesome.com/0ee5b57e.js"&gt;&lt;/script&gt;</code></pre>
-        <p>Using an icon in your HTML is as easy as:</p>
-        <pre><code class="language-markup">&lt;i class="icon icon-message"&gt;&lt;/i&gt;</code></pre>
+      <div class="text-bold">
+        <p>
+          Go to your Fort Awesome dashboard and copy the ID from the url and paste it below to export a JSON or XML character mapping for all of the icons. <img src="kit-id.png" class="kit-id-example">
+        </p>
       </div>
 
       <hr>
 
-      <div class="ios-container">
-        <a name="ios"></a>
-        <h2>iOS:</h2>
-        <ol>
-          <li>Download your .ttf font file from Fort Awesome, add it to your Xcode project.</li>
-        </ol>
-        <ol start="2">
-          <li>
-          <p>Go to your Fort Awesome dashboard and copy the ID from the url and paste it below. <img src="kit-id.png" class="kit-id-example"> Then click <strong>Export JSON Map</strong>, copy the JSON, paste it into a text file, and save it as <code>FONT_NAME_font_map.json</code> (or whatever you prefer). </p>
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Export JSON (iOS)</h2>
           <div class="form-group">
             <label>Fort Awesome Kit ID</label>
-            <div class="row m-b-1">
+            <div class="row mb-1">
               <div class="col-sm-6">
                 <input placeholder="xxxxxxxx" class="form-control" type="text" name="ios_kit_id">
               </div>
               <div class="col-sm-2">
-                <button id="ios-button" class="btn btn-success">Export JSON Map</button>
+                <button id="ios-button" class="btn btn-success">Export JSON Mapping</button>
               </div>
             </div>
           </div>
           <textarea id="ios-output" class="form-control" placeholder="Output JSON..." rows="10"></textarea>
-          Add this JSON file to your Xcode project.</li>
-        </ol>
-        <ol start="3">
-          <li>Add the <a href="https://github.com/PrideChung/FontAwesomeKit">FontAwesomeKit Cocoapod</a> to your project.</li>
-        </ol>
-        <ol start="2">
-          <li>Subclass FAKIcon and override this method as below:</li>
-        </ol>
-        <pre><code class="language-objectivec">+ (UIFont *)iconFontWithSize:(CGFloat)size
-{
-    static dispatch_once_t onceToken;
-    dispatch_once(&amp;onceToken, ^{
-        [self registerIconFontWithURL:[[NSBundle mainBundle] URLForResource:@&quot;YOUR_FONT_FILE_NAME&quot; withExtension:@&quot;ttf&quot;]];
-    });
+        </div>
 
-    UIFont *font = [UIFont fontWithName:@&quot;YOUR_FORT_AWESOME_FONT_NAME&quot; size:size];
-    NSAssert(font, @&quot;UIFont object should not be nil, check if the font file is added to the application bundle and you're using the correct font name.&quot;);
-    return font;
-}
-        </code></pre>
-        <ol start="3">
-          <li>And override this method as below. This is where the magic happens. In this method, we will load up the json mapping file that we generated in step 2 to map the human-friendly identifiers (like “fa-search”) to their computer-friendly character codes (like “f028”).</li>
-        </ol>
-        <pre><code class="language-objectivec">+ (NSDictionary *)allIcons
-{
-    NSString *path = [[NSBundle bundleForClass:self] pathForResource:@&quot;FONT_NAME_font_map&quot; ofType:@&quot;json&quot;];
-    NSData *jsonData = [NSData dataWithContentsOfFile:path];
-
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
-    return json;
-}
-        </code></pre>
-        <ol start="4">
-          <li>To use a custom Fort Awesome icon in your app, just call this method and pass in your identifier. So easy! So Magic!</li>
-        </ol>
-        <pre><code class="language-objectivec">+ (instancetype)iconWithIdentifier:(NSString *)identifier size:(CGFloat)size error:(NSError **)error;
-        </code></pre>
-        <ol start="5">
-          <li>Profit</li>
-        </ol>
-      </div>
-
-      <hr>
-
-      <div class="android-container">
-        <a name="android"></a>
-        <h2>On Android</h2>
-        <p>1: Pull this library into your Android application</p>
-        <p>Go to your Fort Awesome dashboard and copy the ID from the url and paste it below. <img src="kit-id.png" class="kit-id-example"></p>
-        <div class="form-group">
-          <label>Fort Awesome Kit ID</label>
-          <div class="row m-b-1">
-            <div class="col-sm-6">
-              <input placeholder="xxxxxxxx" class="form-control" type="text" name="android_kit_id">
+        <div class="col-md-6">
+          <h2>Export XML (Android)</h2>
+          <div class="form-group">
+            <label>Fort Awesome Kit ID</label>
+            <div class="row mb-1">
+              <div class="col-sm-6">
+                <input placeholder="xxxxxxxx" class="form-control" type="text" name="android_kit_id">
+              </div>
+              <div class="col-sm-2">
+                <button id="android-button" class="btn btn-success">Export XML Mapping</button>
+              </div>
             </div>
-            <div class="col-sm-2">
-              <button id="android-button" class="btn btn-success">Export XML Map</button>
-            </div>
+            <textarea id="android-output" class="form-control" placeholder="Output XML..." rows="10"></textarea>
           </div>
-          <textarea id="android-output" class="form-control" placeholder="Output XML..." rows="10"></textarea>
         </div>
       </div>
 
@@ -143,11 +67,7 @@
     </div>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
-
     <script src="js/script.js"></script>
-    <script src="js/prism.js"></script>
 
   </body>
 </html>
