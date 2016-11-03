@@ -15,7 +15,6 @@
 
 
 
-# What is Fort Awesome Everywhere? 
 ## Fort Awesome Everywhere is a **guide** and **tool** to bring CSS-like ease of use to custom Fort Awesome icon fonts to native iOS and Android development. 
 
 #### Note: Font Awesome vs Fort Awesome. What is the difference? 
