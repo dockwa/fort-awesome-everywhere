@@ -37,7 +37,8 @@ Make sure to copy the file to your project directory.
 
 
 #### 2) Go to your Fort Awesome [Dashboard](https://fortawesome.com/kits/), copy the ID at the end of the url, and paste it [here](https://knotlabs.github.io/fort-awesome-everywhere/). 
-Click **Export**, and then click Download. Add the downloaded JSON file to your Xcode project.  _This is where the magic happens; this file maps the Unicode characters to their Fort Awesome identifiers._
+Click **Export**, and then click Download. Add the downloaded JSON file to your Xcode project.  
+###### _This is where the magic happens; this file maps the Unicode characters to their Fort Awesome identifiers._
 
 
 
@@ -146,7 +147,8 @@ Make sure to copy the file to your project directory.
 
 
 #### 2) Go to your Fort Awesome [Dashboard](https://fortawesome.com/kits/), copy the ID at the end of the url, and paste it [here](https://knotlabs.github.io/fort-awesome-everywhere/). 
-Click **Export**, and then click Download. Add the newly downloaded```icons.xml``` XML file to your Android Studio project in the ```res/values``` folder. _This is where the magic happens; this file maps the Unicode characters to their Fort Awesome identifiers, and since it is a string resource XML file, Android Studio will autocomplete these identifiers in code and layout files._
+Click **Export**, and then click Download. Add the downloaded```icons.xml``` XML file to your Android Studio project in the ```res/values``` folder. 
+###### _This is where the magic happens; this file maps the Unicode characters to their Fort Awesome identifiers, and since it is a string resource XML file, Android Studio will autocomplete these identifiers in code and layout files._
 
 
 #### 3) Add the [fonticon](https://github.com/shamanland/fonticon#gradle-dependency) library to your project. If you use Gradle:
