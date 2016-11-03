@@ -34,8 +34,12 @@ One of the biggest challenges to using custom Fort Awesome icon sets is mapping 
 
 #### 1) Download your .ttf font file from [Fort Awesome](https://fortawesome.com/kits/), and drag it into your Xcode project.
 Make sure to copy the file to your project directory.
+
+
+
 #### 2) Go to your Fort Awesome [Dashboard](https://fortawesome.com/kits/), copy the ID at the end of the url, and paste it [here](https://knotlabs.github.io/fort-awesome-everywhere/). 
 Then click **Export JSON Map**, copy the JSON, paste it into a text file, and save it as ```YOUR_FONT_NAME_font_map.json``` (or any name you prefer). Add this JSON file to your Xcode project.  _This is where the magic happens; this file maps the Unicode characters to their Fort Awesome identifiers._
+
 
 
 
@@ -43,6 +47,8 @@ Then click **Export JSON Map**, copy the JSON, paste it into a text file, and sa
 ```ruby
 'pod FontAwesomeKit/Core'
 ```
+
+
 
 #### 4) Subclass FAKIcon and override ```class func iconFontWithSize(size: CGFloat) -> UIFont``` as below:
 ```swift 
@@ -68,6 +74,7 @@ override class func iconFontWithSize(size: CGFloat) -> UIFont {
 }
 ```
 
+
 #### 5) Override ```class func allIcons() -> [NSObject : AnyObject]``` as below:
 This is where the magic happens. In this method, we will load up the json mapping file that we generated earlier to map the human-friendly identifiers (like "fa-search") to their computer-friendly character codes (like "f028").
 ```swift
@@ -89,6 +96,7 @@ override class func allIcons() -> [NSObject : AnyObject] {
     return json;
 }
 ```
+
 
 ## Usage
 
@@ -123,11 +131,8 @@ let attributedString = icon.attributedString()
 ```objective-c
 NSAttributedString *attributedString = [icon attributedString];
 ```
-
 #
-##### Check out the excellent [FontAwesomeKit](https://github.com/PrideChung/FontAwesomeKit) library for more details. 
-
-
+###### Check out the excellent [FontAwesomeKit](https://github.com/PrideChung/FontAwesomeKit) library for more details. 
 
 #
 #
@@ -179,7 +184,7 @@ textView.setTypeface(Typeface.createFromAsset(context.getAssets(), "YOUR_FONT_FI
 
 ### In Code
 
-#### TextView
+#### TextView:
 
 #### 1) Get the icon code:
 You can get the icon code by implementing a method like the one below. It looks up the identifier in the ```icons.xml``` file we created earlier, and returns the corresponding Unicode character to set on a TextView. 
@@ -207,7 +212,7 @@ if (code != null) {
 }
 ```
 
-#### Drawable
+#### Drawable:
 
 #### 1) _For each icon you want to use as a Drawable_, you must make an XML file like the one below, save it as ```icon_name.xml``` and put the file in ```res/xml```. 
 Note: The opening tag must be ```font-icon```, exactly as it is below. Change ```icon_identifier```, ```textColor```, and ```textSize``` to whatever you require for the particular icon. 
@@ -224,8 +229,5 @@ Note: The opening tag must be ```font-icon```, exactly as it is below. Change ``
 ```java
 Drawable icon = FontIconDrawable.inflate(getContext(), R.xml.icon_name);
 ```
-
 #
-#
-
-##### Check out the excellent [fonticon](https://github.com/shamanland/fonticon#usage) library for more details.
+###### Check out the excellent [fonticon](https://github.com/shamanland/fonticon#usage) library for more details.
