@@ -141,10 +141,11 @@ NSAttributedString *attributedString = [icon attributedString];
 ```
 ###### Check out the excellent [FontAwesomeKit](https://github.com/PrideChung/FontAwesomeKit#example-usage) library for more details. 
 
-#
-#
-#
-#
+
+
+
+
+
 
 # Android
 
