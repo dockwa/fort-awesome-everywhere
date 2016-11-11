@@ -71,9 +71,9 @@ var exportXML = function(result){
 }
 
 var downloadJSON = function(){
-  download($('#ios-output').val(), fontName.toLowerCase() + "_icons.json", "text/plain");
+  download($('#ios-output').val(), fontName.toLowerCase() + "_icon_map.json", "text/plain");
 }
 
 var downloadXML = function(){
-  download($('#android-output').val(), fontName.toLowerCase() + "_icons.xml", "text/plain");
+  download($('#android-output').val(), fontName.toLowerCase() + "_icon_map.xml", "text/plain");
 }
