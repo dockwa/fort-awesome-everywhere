@@ -15,7 +15,7 @@
 
 
 
-## Fort Awesome Everywhere is a **guide** and **tool** to bring CSS-like ease of use to custom Fort Awesome icon fonts to native iOS and Android development. 
+## Fort Awesome Everywhere is a **guide** and **tool** to bring CSS-like ease of use of custom Fort Awesome icon fonts to native iOS and Android development. 
 
 #### Note: Font Awesome vs Fort Awesome. What is the difference? 
 * [Font Awesome](http://fontawesome.io/) is a fantastic _free_ font icon set. If you only need generic/standard icons in your app, do yourself a favor and use Font Awesome; using Font Awesome natively in iOS is trivial with the help of a [third party library](https://github.com/PrideChung/FontAwesomeKit). 
