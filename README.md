@@ -22,7 +22,7 @@
 * [Fort Awesome](https://fortawesome.com) is like Font Awesome, but adds the ability to upload custom icons to create your own custom font icon sets. Its fantastic for when your app or brand has custom/proprietary icons that are unique to your brand.
 
 ### Using custom Fort Awesome icon sets is less than trivial. This is where Fort Awesome Everywhere can help!
-One of the biggest challenges to using custom Fort Awesome icon sets is mapping the **descriptive human-friendly identifiers** (like "fa-shopping-cart") to their **computer-friendly Unicode representation** ("f07a"). _Fort Awesome Everywhere_ is a **tool** that generates a json and am xml mapping file for iOS and Android from your custom Fort Awesome font. Below is the **guide** to _Fort Awesome Everywhere_ where you will learn how easy it is to implement in your app.
+One of the biggest challenges to using custom Fort Awesome icon sets is mapping the **descriptive human-friendly identifiers** (like "fa-shopping-cart") to their **computer-friendly Unicode representation** ("f07a"). _Fort Awesome Everywhere_ is a **tool** that generates a json mapping file (for iOS) and an xml file for Android Studio from your custom Fort Awesome font. Below is the **guide** to _Fort Awesome Everywhere_ where you will learn how easy it is to implement in your app.
 
 
 
