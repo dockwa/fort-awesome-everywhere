@@ -1,3 +1,24 @@
+#dropzone{
+  width: 200px;
+  height: 200px;
+  position: relative;
+  margin: 0 auto;
+  border: 4px dashed rgba(0,0,0,.1);
+  line-height: 12;
+  text-align: center;
+  color: gray;
+}
+
+#dropzone.hover{
+  border-color: rgba(0,0,0,.5);
+}
+
+#dropzone.success{
+  border: 4px solid #28a745;
+  color: #28a745;
+}
+
+
 .nav{
   position: relative;
   display: table;
@@ -36,4 +57,11 @@ a.readme{
   border-top-left-radius: 0;
   border-bottom-right-radius: 0;
   display: none;
+}
+
+.center{
+  display: table;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
 }

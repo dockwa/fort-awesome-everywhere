@@ -1,10 +1,31 @@
 $(function(){
 
-  $('#export-btn').click(function(){
-    var kitID = $('input[name=kit_id]').val();
-    getData(kitID, exportJSON);
-    getData(kitID, exportXML);
-  });
+  $('#dropzone')[0].ondragover = function() {
+      this.className = 'hover';
+      return false;
+  };
+  $('#dropzone')[0].ondragend = function() {
+      this.className = '';
+      return false;
+  };
+  $('#dropzone')[0].ondrop = function(e) {
+      this.className = '';
+      e.preventDefault();
+
+      var file = e.dataTransfer.files[0];
+      var reader = new FileReader();
+      reader.onload = function(event) {
+          console.log(event.target);
+          getData(event.target.result, exportJSON);
+          getData(event.target.result, exportXML);
+          this.className = 'success';
+          this.innerHTML = 'Success!';
+      }.bind(this);
+      console.log(file);
+      reader.readAsText(file);
+
+      return false;
+  };
 
   $('#download-json').click(function(){
     downloadJSON();
@@ -21,42 +42,27 @@ $(function(){
 
 });
 
-var asyncScript = function(u, c) {
-  var d = document, t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-  o.src = u;
-  if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-  s.parentNode.insertBefore(o, s);
-}
+var getData = function(data, exportFunction){
+  console.log(data);
+  var prefix = data.match(/}.([a-zA-Z0-9-_]+){/);
+  if(prefix == null){
+    alert('Your data is not in the correct format.');
+    return;
+  }
+  var fontNameRegex = new RegExp("@font-face{font-family:\'?([a-zA-Z0-9_]+)\'?;", "gi");
+  fontName = fontNameRegex.exec(data)[1];
 
-var getData = function(kitID, exportFunction){
-  asyncScript("https://use.fortawesome.com/" + kitID + ".js", function(){
-    $.get('https://' + FortAwesomeConfig.useUrl + '/woff2.css', function( data ) {
-      var prefix = data.match(/}.([a-zA-Z0-9-_]+){/);
-      if(prefix == null){
-        alert('Your data is not in the correct format.');
-        return;
-      }
-      var fontNameRegex = new RegExp("@font-face{font-family:\'([a-zA-Z0-9_]+)\';", "gi");
-      fontName = fontNameRegex.exec(data)[1];
-
-      var result = [];
-      var regex = new RegExp("." + prefix[1] + "-([a-zA-Z0-9-_]+):before{content:'\\\\([a-zA-Z0-9]+)'}", "gi");
-      var test = regex.exec(data);
+  var result = [];
+  var regex = new RegExp("." + prefix[1] + "-([a-zA-Z0-9-_]+):before{content:'\\\\([a-zA-Z0-9]+)'}", "gi");
+  var test = regex.exec(data);
+  result.push(test);
+  while (test != null) {
+    test = regex.exec(data);
+    if(test != null){
       result.push(test);
-      while (test != null) {
-        test = regex.exec(data);
-        if(test != null){
-          result.push(test);
-        }
-      }
-      exportFunction(result);
-    })
-    .fail(function() {
-      alert('Your kit could not be found');
-    });
-  });
+    }
+  }
+  exportFunction(result);
 }
 
 var exportJSON = function(result){
