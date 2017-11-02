@@ -34,8 +34,6 @@ One of the biggest challenges to using custom Fort Awesome icon sets is mapping 
 
 
 #### 2) Follow the instructions [here](https://dockwa.github.io/fort-awesome-everywhere/), and add the downloaded JSON file to your Xcode project.
-###### _This is where the magic happens; this file maps the Unicode characters to their Fort Awesome identifiers._
-
 
 
 
@@ -76,7 +74,6 @@ Icon.icon(named: "water", size: 26)?.image(size: CGSize(width: 20, height: 20), 
 
 
 #### 2) Follow the instructions [here](https://dockwa.github.io/fort-awesome-everywhere/), and add the downloaded ```icons.xml``` file to your Android Studio project in the ```res/values``` folder.
-###### _This is where the magic happens; this file maps the Unicode characters to their Fort Awesome identifiers, and since it is a string resource XML file, Android Studio will autocomplete these identifiers in code and layout files._
 
 
 #### 3) Add the [fonticon](https://github.com/shamanland/fonticon#gradle-dependency) library to your project. If you use Gradle:
