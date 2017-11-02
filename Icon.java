@@ -1,24 +1,5 @@
 public class Icon {
-
-    //Properties
-    private String identifier;
-    private int color = 0;
-
-    //Constructor
-    public Icon(String identifier, int color) {
-        this.identifier = identifier;
-        this.color = color;
-    }
-
-    //Getters
-    public String getIdentifier() { return identifier != null ? identifier : ""; }
-    public int getColor() { return color; }
-
-    //Call setText with the result of this method.
-    public String getIconCode(Context context) { return Icon.iconCode(identifier, context); }
-
-
-
+    
     //Public
 
     //Cal this on the Button or TextView before you display an Icon.
@@ -40,6 +21,24 @@ public class Icon {
 
         return context.getResources().getString(resID);
     }
+
+
+    //Properties
+    private String identifier;
+    private int color = 0;
+
+    //Constructor
+    public Icon(String identifier, int color) {
+        this.identifier = identifier;
+        this.color = color;
+    }
+
+    //Getters
+    public String getIdentifier() { return identifier != null ? identifier : ""; }
+    public int getColor() { return color; }
+
+    //Call setText with the result of this method.
+    public String getIconCode(Context context) { return Icon.iconCode(identifier, context); }
 
 
 
