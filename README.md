@@ -76,7 +76,6 @@ class MyFortAwesomeFont: FAKIcon {
 
 ## Usage
 
-### In Code
 
 #### 1) Create an instance of your icon subclass:
 ```swift 
