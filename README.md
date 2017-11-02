@@ -29,7 +29,7 @@ One of the biggest challenges to using custom Fort Awesome icon sets is mapping 
 
 ## Setup 
 
-#### 1) Download your kit from [Fort Awesome](https://fortawesome.com/kits/), drag the .ttf file into your Xcode project, and add the `Fonts provided by application` key to your Info.plist with an entry that is the name of your font including the .ttf file extension. (i.e. `myfont.ttf`). 
+#### 1) Download your kit from [Fort Awesome](https://fortawesome.com/kits/), drag the .ttf file into your Xcode project, and add the `Fonts provided by application` key to your Info.plist with an entry that is the name of your font including the .ttf file extension (i.e. `myfont.ttf`). 
 
 
 
@@ -44,7 +44,7 @@ One of the biggest challenges to using custom Fort Awesome icon sets is mapping 
 'pod FontAwesomeKit/Core'
 ```
 
-#### 4) Use the sample class [here](https://github.com/dockwa/fort-awesome-everywhere/blob/gh-pages/Icon.swift) and feel free to customize to your liking. The key methods that make it all work are ```class func allIcons() -> [AnyHashable: Any]``` and ```class func iconFont(withSize size: CGFloat) -> UIFont```. 
+#### 4) Use the sample class [here](https://github.com/dockwa/fort-awesome-everywhere/blob/gh-pages/Icon.swift) and customize if needed. The key methods that make it all work are ```class func allIcons() -> [AnyHashable: Any]``` and ```class func iconFont(withSize size: CGFloat) -> UIFont```. 
 
 
 ## Usage
