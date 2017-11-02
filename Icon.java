@@ -46,7 +46,7 @@ public class Icon {
     //Helpers
 
     private static Typeface getTypeface(Context context) {
-        return Typeface.createFromAsset(context.getAssets(), "Dockwa.ttf");
+        return Typeface.createFromAsset(context.getAssets(), "YOUR_FONT_FILE_NAME.ttf");
     }
 
     private static String lintIdentifier(String identifier) {
