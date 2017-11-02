@@ -42,7 +42,7 @@ One of the biggest challenges to using custom Fort Awesome icon sets is mapping 
 'pod FontAwesomeKit/Core'
 ```
 
-#### 4) Use the sample class [here](https://github.com/dockwa/fort-awesome-everywhere/blob/gh-pages/Icon.swift) and customize if needed. The key methods that make it all work are ```class func allIcons() -> [AnyHashable: Any]``` and ```class func iconFont(withSize size: CGFloat) -> UIFont```. 
+#### 4) Use the sample Icon class [here](https://github.com/dockwa/fort-awesome-everywhere/blob/gh-pages/Icon.swift) and customize if needed. 
 
 
 ## Usage
@@ -88,7 +88,7 @@ dependencies {
 FontIconTypefaceHolder.init(getAssets(), "YOUR_FONT_FILE_NAME.ttf");
 ```
 
-#### 5) Copy the sample class [here](https://github.com/dockwa/fort-awesome-everywhere/blob/gh-pages/Icon.java) and customize if needed.
+#### 5) Copy the sample Icon class [here](https://github.com/dockwa/fort-awesome-everywhere/blob/gh-pages/Icon.java) and customize if needed.
 
 
 ## Usage
