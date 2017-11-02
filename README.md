@@ -91,6 +91,9 @@ dependencies {
 FontIconTypefaceHolder.init(getAssets(), "YOUR_FONT_FILE_NAME.ttf");
 ```
 
+#### 5) Copy the sample class [here](https://github.com/dockwa/fort-awesome-everywhere/blob/gh-pages/Icon.java) and customize if needed.
+
+
 ## Usage
 
 ### In XML Layout
@@ -105,37 +108,20 @@ FontIconTypefaceHolder.init(getAssets(), "YOUR_FONT_FILE_NAME.ttf");
 
 #### 2) After inflating the layout in code, make sure to set the TextView's typeface as below:
 ```java
-textView.setTypeface(Typeface.createFromAsset(context.getAssets(), "YOUR_FONT_FILE_NAME.ttf"));
+Icon.setTypefaceAsIconFont(getApplicationContext(), myTextView);
 ```
-    
+
 
 ### In Code
 
-#### TextView:
-
-#### 1) Get the icon code:
-You can get the icon code by implementing a method like the one below. It looks up the identifier in the ```icons.xml``` file we created earlier, and returns the corresponding Unicode character to set on a TextView. 
-```java
-public class MyFortAwesomeFont {
-    public static String fontIconCodeFromIdentifier(Context context, String identifier) {
-        if (identifier == null) { return null; }
-    
-        String xmlLookup = context.getPackageName() + ":string/" + identifier;
-        int resourceID = context.getResources().getIdentifier(xmlLookup, null, null);
-        if (resourceID == 0) { return null; }
-
-        String iconCode = context.getResources().getString(resourceID);
-        return iconCode;
-    }
-}
- ```
+#### TextView / Button:
  
-#### 2) Set the typeface and text on the TextView:
+#### 1) Set the typeface and text on the TextView:
 ```java
-String code = MyFortAwesomeFont.fontIconCodeFromIdentifier(getContext(), "fort_awesome_identifier");
+String code = Icon.iconCode("camera", getContext());
 if (code != null) {
-    textView.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "YOUR_FONT_FILE_NAME.ttf"));
-    textView.setText(code);
+    Icon.setTypefaceAsIconFont(getApplicationContext(), myTextView);
+    myTextView.setText(code);
 }
 ```
 
