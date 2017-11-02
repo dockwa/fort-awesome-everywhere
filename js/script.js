@@ -91,5 +91,5 @@ var downloadJSON = function(){
 }
 
 var downloadXML = function(){
-  download($('#android-output').val(), fontName.toLowerCase() + "_icon_map.xml", "text/plain");
+  download($('#android-output').val(), "icons.xml", "text/plain");
 }
