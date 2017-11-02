@@ -43,7 +43,6 @@ $(function(){
 });
 
 var getData = function(data, exportFunction){
-  console.log(data);
   var prefix = data.match(/}.([a-zA-Z0-9-_]+){/);
   if(prefix == null){
     alert('Your data is not in the correct format.');
@@ -80,7 +79,7 @@ var exportXML = function(result){
   // Format: <string name="add_user">&#xf05b;</string>
   var xml = '<?xml version="1.0" encoding="utf-8"?>\n<resources>\n';
   for(var i = 0, l = result.length; i < l; i++){
-    xml += '<string name="' + result[i][1] + '">&#x' + result[i][2] + ';</string>\n';
+    xml += '<string name="' + result[i][1].replace('_', '-') + '">&#x' + result[i][2] + ';</string>\n';
   }
   xml += '</resources>';
   $('#android-output').val(xml);
