@@ -29,7 +29,7 @@ One of the biggest challenges to using custom Fort Awesome icon sets is mapping 
 
 ## Setup 
 
-#### 1) Download your kit from [Fort Awesome](https://fortawesome.com/kits/), drag the .ttf file into your Xcode project, and add the `Fonts provided by application` key to your Info.plist and add an entry that is the name of your font, including the .ttf file extension. (i.e. `myfont.ttf`). 
+#### 1) Download your kit from [Fort Awesome](https://fortawesome.com/kits/), drag the .ttf file into your Xcode project, and add the `Fonts provided by application` key to your Info.plist with an entry that is the name of your font including the .ttf file extension. (i.e. `myfont.ttf`). 
 
 
 
@@ -52,7 +52,7 @@ class MyFortAwesomeFont: FAKIcon {
     override class func iconFontWithSize(size: CGFloat) -> UIFont {
         var token: dispatch_once_t = 0
         dispatch_once(&token, {() -> Void in
-             super.registerIconFontWithURL(NSBundle.mainBundle().URLForResource("YOUR_FONT_FILE_NAME", withExtension: "ttf")!)
+             super.registerIconFontWithURL(Bundle.main.url(forResource: "YOUR_FONT_FILE_NAME", withExtension: "ttf")!)
         })
         return UIFont(name: "YOUR_FONT_NAME", size: size)!
     }
@@ -64,10 +64,9 @@ This is where the magic happens. In this method, we will load up the json mappin
 ```swift
 class MyFortAwesomeFont: FAKIcon {
     override class func allIcons() -> [NSObject : AnyObject] {
-        let path = NSBundle(forClass: self).pathForResource("YOUR_FONT_NAME_font_map", ofType: "json")!
-        let jsonData = NSData(contentsOfFile: path)!
-   
-        let json = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: .AllowFragments)
+        let path = Bundle.main.path(forResource: "YOUR_FONT_NAME_font_map", ofType: "json")!
+        let jsonData = try! Data(contentsOf: URL(fileURLWithPath: path))
+        let json = try! JSONSerialization.jsonObject(with: jsonData, options: .allowFragments)
         return json as! [String : String]
     }
 }
