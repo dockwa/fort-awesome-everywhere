@@ -44,58 +44,20 @@ One of the biggest challenges to using custom Fort Awesome icon sets is mapping 
 'pod FontAwesomeKit/Core'
 ```
 
-
-
-#### 4) Subclass FAKIcon and override ```class func iconFontWithSize(size: CGFloat) -> UIFont``` as below:
-```swift 
-class MyFortAwesomeFont: FAKIcon {
-    override class func iconFontWithSize(size: CGFloat) -> UIFont {
-        var token: dispatch_once_t = 0
-        dispatch_once(&token, {() -> Void in
-             super.registerIconFontWithURL(Bundle.main.url(forResource: "YOUR_FONT_FILE_NAME", withExtension: "ttf")!)
-        })
-        return UIFont(name: "YOUR_FONT_NAME", size: size)!
-    }
-}
-```
-
-#### 5) Override ```class func allIcons() -> [NSObject : AnyObject]``` as below:
-This is where the magic happens. In this method, we will load up the json mapping file that we generated earlier to map the human-friendly identifiers (like "fa-search") to their computer-friendly character codes (like "f028").
-```swift
-class MyFortAwesomeFont: FAKIcon {
-    override class func allIcons() -> [NSObject : AnyObject] {
-        let path = Bundle.main.path(forResource: "YOUR_FONT_NAME_font_map", ofType: "json")!
-        let jsonData = try! Data(contentsOf: URL(fileURLWithPath: path))
-        let json = try! JSONSerialization.jsonObject(with: jsonData, options: .allowFragments)
-        return json as! [String : String]
-    }
-}
-```
+#### 4) Use the sample class [here](https://github.com/dockwa/fort-awesome-everywhere/blob/gh-pages/Icon.swift) and feel free to customize to your liking. The key methods that make it all work are ```class func allIcons() -> [AnyHashable: Any]``` and ```class func iconFont(withSize size: CGFloat) -> UIFont```. 
 
 
 ## Usage
 
 
-#### 1) Create an instance of your icon subclass:
+#### 1) Create a UIImage to show your icon in a UIImageView (easiest, has sensible defaults to work for most scenarios): 
 ```swift 
-let icon: MyFortAwesomeFont?
-do {
-  icon = try MyFortAwesomeFont(identifier: "icon-identifer", size: 15)
-} catch let error as NSError {
-  print(error.localizedDescription)
-}
+Icon.image(named: "camera", color: .green)
 ```
 
-
-#### 2) 
-#### Create a UIImage to show your icon in a UIImageView:
-```swift 
-let iconImage = icon.imageWithSize(CGSize(width: 15, height: 15))
-```
-
-#### Create an NSAttributedString to show your icon in a UILabel or UITextView:
-```swift 
-let attributedString = icon.attributedString()
+#### 2) If you need to customize the icon's size and/or positioning, create an Icon object and customize as needed.
+```swift
+Icon.icon(named: "water", size: 26)?.image(size: CGSize(width: 20, height: 20), color: .blue)
 ```
 
 ###### Check out the excellent [FontAwesomeKit](https://github.com/PrideChung/FontAwesomeKit#example-usage) library for more details. 
