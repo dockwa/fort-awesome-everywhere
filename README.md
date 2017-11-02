@@ -30,13 +30,12 @@ One of the biggest challenges to using custom Fort Awesome icon sets is mapping 
 
 ## Setup 
 
-#### 1) Download your .ttf font file from [Fort Awesome](https://fortawesome.com/kits/), and drag it into your Xcode project.
+#### 1) Download your kit from [Fort Awesome](https://fortawesome.com/kits/), drag the .ttf file into your Xcode project, and add the `Fonts provided by application` key (type: array) to your Info.plist and add an entry that is the name of your font, including the .ttf file extension. (i.e. `myfont.ttf`). 
 Make sure to copy the file to your project directory.
 
 
 
-#### 2) Go to your Fort Awesome [Dashboard](https://fortawesome.com/kits/), copy the ID at the end of the url, and paste it [here](https://dockwa.github.io/fort-awesome-everywhere/). 
-Click **Export**, and then click Download. Add the downloaded JSON file to your Xcode project.  
+#### 2) Follow the instructions [here](https://dockwa.github.io/fort-awesome-everywhere/), cLick Download and add the downloaded JSON file to your Xcode project.
 ###### _This is where the magic happens; this file maps the Unicode characters to their Fort Awesome identifiers._
 
 
@@ -61,22 +60,6 @@ class MyFortAwesomeFont: FAKIcon {
     }
 }
 ```
-```objective-c
-@implementation MyFortAwesomeFont: FAKIcon
-+ (UIFont *)iconFontWithSize:(CGFloat)size
-{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [self registerIconFontWithURL:[[NSBundle mainBundle] URLForResource:@"YOUR_FONT_FILE_NAME" withExtension:@"ttf"]];
-    });
-
-    UIFont *font = [UIFont fontWithName:@"YOUR_FORT_AWESOME_FONT_NAME" size:size];
-    NSAssert(font, @"UIFont object should not be nil, check if the font file is added to the application bundle and you're using the correct font name.");
-    return font;
-}
-@end
-```
-
 
 #### 5) Override ```class func allIcons() -> [NSObject : AnyObject]``` as below:
 This is where the magic happens. In this method, we will load up the json mapping file that we generated earlier to map the human-friendly identifiers (like "fa-search") to their computer-friendly character codes (like "f028").
@@ -90,18 +73,6 @@ class MyFortAwesomeFont: FAKIcon {
         return json as! [String : String]
     }
 }
-```
-```objective-c
-@implementation MyFortAwesomeFont: FAKIcon
-+ (NSDictionary *)allIcons
-{
-    NSString *path = [[NSBundle bundleForClass:self] pathForResource:@"YOUR_FONT_NAME_font_map" ofType:@"json"];
-    NSData *jsonData = [NSData dataWithContentsOfFile:path];
-
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
-    return json;
-}
-@end
 ```
 
 
@@ -118,26 +89,19 @@ do {
   print(error.localizedDescription)
 }
 ```
-```objective-c
-NSError *error;
-YourIconSubclass *starIcon = [YourIconSubclass  iconWithIdentifier:@"icon-identifer" size:15 error:error];
-```
+
 
 #### 2) 
 #### Create a UIImage to show your icon in a UIImageView:
 ```swift 
 let iconImage = icon.imageWithSize(CGSize(width: 15, height: 15))
 ```
-```objective-c
-UIImage *iconImage = [icon imageWithSize:CGSizeMake(15, 15)];
-```
+
 #### Create an NSAttributedString to show your icon in a UILabel or UITextView:
 ```swift 
 let attributedString = icon.attributedString()
 ```
-```objective-c
-NSAttributedString *attributedString = [icon attributedString];
-```
+
 ###### Check out the excellent [FontAwesomeKit](https://github.com/PrideChung/FontAwesomeKit#example-usage) library for more details. 
 
 
@@ -150,12 +114,11 @@ NSAttributedString *attributedString = [icon attributedString];
 
 ## Setup 
 
-#### 1) Download your .ttf font file from [Fort Awesome](https://fortawesome.com/kits/), and drag it into your Android Studio project.
-Make sure to copy the file to your project directory.
+#### 1) Download your kit from [Fort Awesome](https://fortawesome.com/kits/) and drag the .ttf file into your Android Studio project. 
 
 
-#### 2) Go to your Fort Awesome [Dashboard](https://fortawesome.com/kits/), copy the ID at the end of the url, and paste it [here](https://knotlabs.github.io/fort-awesome-everywhere/). 
-Click **Export**, and then click Download. Add the downloaded```icons.xml``` XML file to your Android Studio project in the ```res/values``` folder. 
+#### 2) Follow the instructions [here](https://dockwa.github.io/fort-awesome-everywhere/), cLick Download and add the downloaded ```icons.xml``` file to your Android Studio project in the ```res/values``` folder.
+
 ###### _This is where the magic happens; this file maps the Unicode characters to their Fort Awesome identifiers, and since it is a string resource XML file, Android Studio will autocomplete these identifiers in code and layout files._
 
 
