@@ -21,7 +21,6 @@
 * [Font Awesome](http://fontawesome.io/) is a fantastic _free_ font icon set. If you only need generic/standard icons in your app, do yourself a favor and use Font Awesome; using Font Awesome natively in iOS is trivial with the help of a [third party library](https://github.com/PrideChung/FontAwesomeKit). 
 * [Fort Awesome](https://fortawesome.com) is like Font Awesome, but adds the ability to upload custom icons to create your own custom font icon sets. Its fantastic for when your app or brand has custom/proprietary icons that are unique to your brand.
 
-### Using custom Fort Awesome icon sets is less than trivial. This is where Fort Awesome Everywhere can help!
 One of the biggest challenges to using custom Fort Awesome icon sets is mapping the **descriptive human-friendly identifiers** (like "fa-shopping-cart") to their **computer-friendly Unicode representation** ("f07a"). _Fort Awesome Everywhere_ is a **tool** that generates a json mapping file (for iOS) and an xml file for Android Studio from your custom Fort Awesome font. Below is the **guide** to _Fort Awesome Everywhere_ where you will learn how easy it is to implement in your app.
 
 
@@ -30,8 +29,7 @@ One of the biggest challenges to using custom Fort Awesome icon sets is mapping 
 
 ## Setup 
 
-#### 1) Download your kit from [Fort Awesome](https://fortawesome.com/kits/), drag the .ttf file into your Xcode project, and add the `Fonts provided by application` key (type: array) to your Info.plist and add an entry that is the name of your font, including the .ttf file extension. (i.e. `myfont.ttf`). 
-Make sure to copy the file to your project directory.
+#### 1) Download your kit from [Fort Awesome](https://fortawesome.com/kits/), drag the .ttf file into your Xcode project, and add the `Fonts provided by application` key to your Info.plist and add an entry that is the name of your font, including the .ttf file extension. (i.e. `myfont.ttf`). 
 
 
 
