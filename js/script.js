@@ -134,7 +134,7 @@ import Foundation
 /// A type safe key used to identify Icons.
 ///
 /// Allows for defining and accessing icons without bare strings. This will leverage the compiler
-/// to enforce key uniqueness and incorrect use and make it easier to accomodate future UI changes.
+/// to enforce key uniqueness and incorrect use and make it easier to accommodate future UI changes.
 struct IconName: RawRepresentable, Hashable, Equatable {
 
     typealias RawValue = String
