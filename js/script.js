@@ -72,7 +72,7 @@ var getData = function(data, exportFunction){
 var exportJSON = function(result){
   var json = '{';
   for(var i = 0, l = result.length; i < l; i++){
-    json += '\n"' + result[i][1] + '":"\\u' + result[i][2] + '",'
+    json += '\n  "' + result[i][1] + '":"\\u' + result[i][2] + '",'
   }
   json = json.slice(0, -1); // remove last comma
   json += '\n}';
@@ -100,7 +100,7 @@ var exportXML = function(result){
   // Format: <string name="add_user">&#xf05b;</string>
   var xml = '<?xml version="1.0" encoding="utf-8"?>\n<resources>\n';
   for(var i = 0, l = result.length; i < l; i++){
-    xml += '<string name="' + result[i][1].replace(/-/g, '_') + '">&#x' + result[i][2] + ';</string>\n';
+    xml += '     <string name="' + result[i][1].replace(/-/g, '_') + '">&#x' + result[i][2] + ';</string>\n';
   }
   xml += '</resources>';
   $('#android-output').val(xml);
