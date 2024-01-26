@@ -20,7 +20,7 @@
         <ol class="center">
           <li>Download your kit from <a href="https://fortawesome.com">fortawesome.com</a>.</li>
           <li>In the downloaded folder, find the 'css/embedded-woff2.css' file.</li>
-          <li>Drag and drop the file below to export a JSON or XML character mapping for all of the icons.</li>
+          <li>Drag and drop the file below to export the character mapping for all of the icons.</li>
         </ol>
       </p>
       <div id="dropzone">embedded-woff2.css</div>
@@ -30,8 +30,9 @@
       <div class="row">
         <div class="col-md-6">
           <h3>JSON Export (iOS)</h3>
+          <p class="text-danger">*Required for iOS</p>
           <div class="textarea-wrapper">
-            <textarea id="ios-output" class="form-control" placeholder="Output JSON..." rows="10"></textarea>
+            <pre><textarea id="ios-output" class="form-control" placeholder="Output JSON..." rows="10"></textarea></pre>
             <button class="btn btn-primary" id="download-json">Download</button>
           </div>
           <a class="mt-1 d-block" href="https://github.com/dockwa/fort-awesome-everywhere/blob/gh-pages/README.md#ios">Finish iOS Setup...</a>
@@ -39,8 +40,9 @@
 
         <div class="col-md-6">
             <h3>XML Export (Android)</h3>
+            <p class="text-danger">*Required for Android</p>
             <div class="textarea-wrapper">
-              <textarea id="android-output" class="form-control" placeholder="Output XML..." rows="10"></textarea>
+              <pre><textarea id="android-output" class="form-control" placeholder="Output XML..." rows="10"></textarea></pre>
               <button class="btn btn-primary" id="download-xml">Download</button>
             </div>
             <a class="mt-1 d-block" href="https://github.com/dockwa/fort-awesome-everywhere/blob/gh-pages/README.md#android">Finish Android Setup...</a>
