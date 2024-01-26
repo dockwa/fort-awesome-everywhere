@@ -32,7 +32,7 @@ One of the biggest challenges to using custom Fort Awesome icon sets is mapping 
 1) Download your kit from [Fort Awesome](https://fortawesome.com/kits/), drag the .ttf file into your Xcode project, and add the `Fonts provided by application` key to your Info.plist with an entry that is the name of your font including the .ttf file extension (i.e. `myfont.ttf`). 
 
 
-2) Follow the instructions [here](https://dockwa.github.io/fort-awesome-everywhere/), and add the downloaded JSON file to your Xcode project.
+2) Follow the instructions [here](https://dockwa.github.io/fort-awesome-everywhere/), and add the downloaded JSON (and optional Swift file) to your Xcode project.
 
 
 3) Add the [FontAwesomeKit](https://github.com/PrideChung/FontAwesomeKit) Core library to your project. If you use CocoaPods:
@@ -40,20 +40,23 @@ One of the biggest challenges to using custom Fort Awesome icon sets is mapping 
 'pod FontAwesomeKit/Core'
 ```
 
-4) Use the sample Icon class [here](https://github.com/dockwa/fort-awesome-everywhere/blob/gh-pages/Icon.swift) and customize if needed. 
-
+4) Use the sample Icon class [here](https://github.com/dockwa/fort-awesome-everywhere/blob/gh-pages/Icon.swift) and customize if needed.
 
 ### Usage
 
 
 1) Create a UIImage to show your icon in a UIImageView (easiest, has sensible defaults to work for most scenarios): 
 ```swift 
+// If only using the JSON file, pass a string with the name of the icon:
 Icon.image(named: "camera", color: .green)
+
+// If using the optional Swift file, you can pass a type-safe IconName instead of a string:
+Icon.image(named: IconName.camera.rawValue, color: .green)
 ```
 
 2) If you need to customize the icon's size and/or positioning, create an Icon object and customize as needed.
 ```swift
-Icon.icon(named: "water", size: 26)?.image(size: CGSize(width: 20, height: 20), color: .blue)
+Icon.icon(named: IconName.camera.rawValue, size: 26)?.image(size: CGSize(width: 20, height: 20), color: .blue)
 ```
 
 ###### Check out the excellent [FontAwesomeKit](https://github.com/PrideChung/FontAwesomeKit#example-usage) library for more details. 
