@@ -1,4 +1,7 @@
 # Fort Awesome Everywhere!
+Fort Awesome Everywhere is a **guide** and **tool** to bring CSS-like ease of use of custom Fort Awesome icon fonts to native iOS and Android development.
+
+One of the biggest challenges to using custom Fort Awesome icon sets is mapping the **descriptive human-friendly identifiers** (like "fa-shopping-cart") to their **computer-friendly Unicode representation** ("f07a"). _Fort Awesome Everywhere_ is a **tool** that generates a json mapping file (for iOS) and an xml file for Android Studio from your custom Fort Awesome font. Below is the **guide** to _Fort Awesome Everywhere_ where you will learn how easy it is to implement in your app.
 
 ## What are icon fonts?
 * Icon fonts are a very popular technique on the web where loading images can be slow and increase the size of websites unecessarily. 
@@ -14,46 +17,41 @@
 ###### *A sample large production app's entire icon set comes in at around ~32 KB. No more @2x, @3x, hdpi, mdpi, xhdpi, xxhdpi, xxxhdpi. Just one, tiny-file-size, infinitely scalable vector. 
 
 
+ 
 
-## Fort Awesome Everywhere is a **guide** and **tool** to bring CSS-like ease of use of custom Fort Awesome icon fonts to native iOS and Android development. 
-
-#### Note: Font Awesome vs Fort Awesome. What is the difference? 
+##### Note: Font Awesome vs Fort Awesome. What is the difference? 
 * [Font Awesome](http://fontawesome.io/) is a fantastic _free_ font icon set. If you only need generic/standard icons in your app, do yourself a favor and use Font Awesome; using Font Awesome natively in iOS is trivial with the help of a [third party library](https://github.com/PrideChung/FontAwesomeKit). 
 * [Fort Awesome](https://fortawesome.com) is like Font Awesome, but adds the ability to upload custom icons to create your own custom font icon sets. Its fantastic for when your app or brand has custom/proprietary icons that are unique to your brand.
-
-One of the biggest challenges to using custom Fort Awesome icon sets is mapping the **descriptive human-friendly identifiers** (like "fa-shopping-cart") to their **computer-friendly Unicode representation** ("f07a"). _Fort Awesome Everywhere_ is a **tool** that generates a json mapping file (for iOS) and an xml file for Android Studio from your custom Fort Awesome font. Below is the **guide** to _Fort Awesome Everywhere_ where you will learn how easy it is to implement in your app.
 
 
 
 # iOS
 
-## Setup 
+### Setup 
 
-#### 1) Download your kit from [Fort Awesome](https://fortawesome.com/kits/), drag the .ttf file into your Xcode project, and add the `Fonts provided by application` key to your Info.plist with an entry that is the name of your font including the .ttf file extension (i.e. `myfont.ttf`). 
-
-
-
-#### 2) Follow the instructions [here](https://dockwa.github.io/fort-awesome-everywhere/), and add the downloaded JSON file to your Xcode project.
+1) Download your kit from [Fort Awesome](https://fortawesome.com/kits/), drag the .ttf file into your Xcode project, and add the `Fonts provided by application` key to your Info.plist with an entry that is the name of your font including the .ttf file extension (i.e. `myfont.ttf`). 
 
 
+2) Follow the instructions [here](https://dockwa.github.io/fort-awesome-everywhere/), and add the downloaded JSON file to your Xcode project.
 
-#### 3) Add the [FontAwesomeKit](https://github.com/PrideChung/FontAwesomeKit) Core library to your project. If you use CocoaPods:
+
+3) Add the [FontAwesomeKit](https://github.com/PrideChung/FontAwesomeKit) Core library to your project. If you use CocoaPods:
 ```ruby
 'pod FontAwesomeKit/Core'
 ```
 
-#### 4) Use the sample Icon class [here](https://github.com/dockwa/fort-awesome-everywhere/blob/gh-pages/Icon.swift) and customize if needed. 
+4) Use the sample Icon class [here](https://github.com/dockwa/fort-awesome-everywhere/blob/gh-pages/Icon.swift) and customize if needed. 
 
 
-## Usage
+### Usage
 
 
-#### 1) Create a UIImage to show your icon in a UIImageView (easiest, has sensible defaults to work for most scenarios): 
+1) Create a UIImage to show your icon in a UIImageView (easiest, has sensible defaults to work for most scenarios): 
 ```swift 
 Icon.image(named: "camera", color: .green)
 ```
 
-#### 2) If you need to customize the icon's size and/or positioning, create an Icon object and customize as needed.
+2) If you need to customize the icon's size and/or positioning, create an Icon object and customize as needed.
 ```swift
 Icon.icon(named: "water", size: 26)?.image(size: CGSize(width: 20, height: 20), color: .blue)
 ```
@@ -70,32 +68,32 @@ Icon.icon(named: "water", size: 26)?.image(size: CGSize(width: 20, height: 20), 
 
 ## Setup 
 
-#### 1) Download your kit from [Fort Awesome](https://fortawesome.com/kits/) and drag the .ttf file into your Android Studio project. 
+1) Download your kit from [Fort Awesome](https://fortawesome.com/kits/) and drag the .ttf file into your Android Studio project. 
 
 
-#### 2) Follow the instructions [here](https://dockwa.github.io/fort-awesome-everywhere/), and add the downloaded ```icons.xml``` file to your Android Studio project in the ```res/values``` folder.
+2) Follow the instructions [here](https://dockwa.github.io/fort-awesome-everywhere/), and add the downloaded ```icons.xml``` file to your Android Studio project in the ```res/values``` folder.
 
 
-#### 3) Add the [fonticon](https://github.com/shamanland/fonticon#gradle-dependency) library to your project. If you use Gradle:
+3) Add the [fonticon](https://github.com/shamanland/fonticon#gradle-dependency) library to your project. If you use Gradle:
 ```groovy
 dependencies {
     compile 'com.shamanland:fonticon:0.1.9'
 }
 ```
 
-#### 4) In your Application's ```onCreate()``` method, call this method to load the font. 
+4) In your Application's ```onCreate()``` method, call this method to load the font. 
 ```java 
 FontIconTypefaceHolder.init(getAssets(), "YOUR_FONT_FILE_NAME.ttf");
 ```
 
-#### 5) Copy the sample Icon class [here](https://github.com/dockwa/fort-awesome-everywhere/blob/gh-pages/Icon.java) and customize if needed.
+5) Copy the sample Icon class [here](https://github.com/dockwa/fort-awesome-everywhere/blob/gh-pages/Icon.java) and customize if needed.
 
 
 ## Usage
 
 ### In XML Layout
 
-#### 1) Ceate a TextView in an XML layout and set its ```text``` attribute to ```@string/icon_identifier```, using the icon's identifier found in the ```icons.xml``` file we created earlier.
+1) Ceate a TextView in an XML layout and set its ```text``` attribute to ```@string/icon_identifier```, using the icon's identifier found in the ```icons.xml``` file we created earlier.
 ```xml
 <TextView
     android:id="@+id/view_iconTextView"
@@ -103,7 +101,7 @@ FontIconTypefaceHolder.init(getAssets(), "YOUR_FONT_FILE_NAME.ttf");
 ```
 
 
-#### 2) After inflating the layout in code, make sure to set the TextView's typeface as below:
+2) After inflating the layout in code, make sure to set the TextView's typeface as below:
 ```java
 Icon.setTypefaceAsIconFont(getApplicationContext(), myTextView);
 ```
@@ -113,7 +111,7 @@ Icon.setTypefaceAsIconFont(getApplicationContext(), myTextView);
 
 #### TextView / Button:
  
-#### 1) Set the typeface and text on the TextView:
+1) Set the typeface and text on the TextView:
 ```java
 String code = Icon.iconCode("camera", getContext());
 if (code != null) {
@@ -124,7 +122,7 @@ if (code != null) {
 
 #### Drawable:
 
-#### 1) _For each icon you want to use as a Drawable_, you must make an XML file like the one below, save it as ```icon_name.xml``` and put the file in ```res/xml```. 
+1) _For each icon you want to use as a Drawable_, you must make an XML file like the one below, save it as ```icon_name.xml``` and put the file in ```res/xml```. 
 Note: The opening tag must be ```font-icon```, exactly as it is below. Change ```icon_identifier```, ```textColor```, and ```textSize``` to whatever you require for the particular icon. 
 
 ```xml
@@ -135,8 +133,10 @@ Note: The opening tag must be ```font-icon```, exactly as it is below. Change ``
     android:textColor="@android:color/black" />
 ```
 
-#### 2) Create the Drawable
+2) Create the Drawable
 ```java
 Drawable icon = FontIconDrawable.inflate(getContext(), R.xml.icon_name);
 ```
+
+
 ###### Check out the excellent [fonticon](https://github.com/shamanland/fonticon#usage) library for more details.
